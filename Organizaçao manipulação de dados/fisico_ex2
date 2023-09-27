@@ -1,0 +1,50 @@
+/* Lógico_ex2: */
+
+CREATE TABLE Pessoa (
+    CPF integer PRIMARY KEY,
+    Nome varchar(100)
+);
+
+CREATE TABLE Agenda (
+    Nome varchar(!00),
+    Telefone varchar(18),
+    dddTelefone varchar(20),
+    fk_Pessoa_CPF integer
+);
+
+CREATE TABLE Ligação (
+    Data date,
+    Hora_inicio time,
+    Hora_termino time,
+    Tempo_gasto real,
+    Numero_pulsos integer PRIMARY KEY,
+    Telefone_discado varchar,
+    fk_Pessoa_CPF integer,
+    fk_Regra de Calculo_Intervalo_pulso integer,
+    fk_Regra de Calculo_Tempo_ligaçao integer
+);
+
+CREATE TABLE Regra de Calculo (
+    Valor_pulso real,
+    Intervalo_pulso integer,
+    Calcular_pulso date,
+    Tempo_ligaçao integer,
+    Calcular_tempo time,
+    Hora_termino time,
+    PRIMARY KEY (Intervalo_pulso, Tempo_ligaçao)
+);
+ 
+ALTER TABLE Agenda ADD CONSTRAINT FK_Agenda_1
+    FOREIGN KEY (fk_Pessoa_CPF)
+    REFERENCES Pessoa (CPF)
+    ON DELETE RESTRICT;
+ 
+ALTER TABLE Ligação ADD CONSTRAINT FK_Ligação_2
+    FOREIGN KEY (fk_Pessoa_CPF)
+    REFERENCES Pessoa (CPF)
+    ON DELETE RESTRICT;
+ 
+ALTER TABLE Ligação ADD CONSTRAINT FK_Ligação_3
+    FOREIGN KEY (fk_Regra de Calculo_Intervalo_pulso, fk_Regra de Calculo_Tempo_ligaçao)
+    REFERENCES Regra de Calculo (Intervalo_pulso, Tempo_ligaçao)
+    ON DELETE RESTRICT;

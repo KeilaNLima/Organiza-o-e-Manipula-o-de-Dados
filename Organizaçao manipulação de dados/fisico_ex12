@@ -1,0 +1,50 @@
+/* Lógico_ex12: */
+
+CREATE TABLE Jogo_Loterico (
+    Id_cliente integer,
+    qtd_minima_aposta integer,
+    qtd_maxima_aposta integer,
+    Limete_superior_aposta integer,
+    Minimos_acertos integer,
+    Maximos_acertos integer,
+    Atributo_7qtd_sorteados integer,
+    PRIMARY KEY (Id_cliente, qtd_minima_aposta, qtd_maxima_aposta, Limete_superior_aposta, Minimos_acertos, Maximos_acertos, Atributo_7qtd_sorteados)
+);
+
+CREATE TABLE Concurso (
+    Id_concurso integer,
+    Numero_concurso integer,
+    Data_concurso Date,
+    Numeros_apostados integer,
+    fk_Premiacao_ID_premiacao integer,
+    fk_Premiacao_Numeros_sorteados integer
+);
+
+CREATE TABLE Premiacao (
+    ID_premiacao integer,
+    Faixa__Premiacao varchar(14,
+    Valor real,
+    Acumulados boolean,
+    Numeros_sorteados integer,
+    PRIMARY KEY (ID_premiacao, Numeros_sorteados)
+);
+
+CREATE TABLE jogadores (
+    fk_Jogo_Loterico_Id_cliente integer,
+    fk_Jogo_Loterico_qtd_minima_aposta integer,
+    fk_Jogo_Loterico_qtd_maxima_aposta integer,
+    fk_Jogo_Loterico_Limete_superior_aposta integer,
+    fk_Jogo_Loterico_Minimos_acertos integer,
+    fk_Jogo_Loterico_Maximos_acertos integer,
+    fk_Jogo_Loterico_Atributo_7qtd_sorteados integer
+);
+ 
+ALTER TABLE Concurso ADD CONSTRAINT FK_Concurso_1
+    FOREIGN KEY (fk_Premiacao_ID_premiacao, fk_Premiacao_Numeros_sorteados)
+    REFERENCES Premiacao (ID_premiacao, Numeros_sorteados)
+    ON DELETE RESTRICT;
+ 
+ALTER TABLE jogadores ADD CONSTRAINT FK_jogadores_1
+    FOREIGN KEY (fk_Jogo_Loterico_Id_cliente, fk_Jogo_Loterico_qtd_minima_aposta, fk_Jogo_Loterico_qtd_maxima_aposta, fk_Jogo_Loterico_Limete_superior_aposta, fk_Jogo_Loterico_Minimos_acertos, fk_Jogo_Loterico_Maximos_acertos, fk_Jogo_Loterico_Atributo_7qtd_sorteados)
+    REFERENCES Jogo_Loterico (Id_cliente, qtd_minima_aposta, qtd_maxima_aposta, Limete_superior_aposta, Minimos_acertos, Maximos_acertos, Atributo_7qtd_sorteados)
+    ON DELETE RESTRICT;

@@ -1,0 +1,41 @@
+/* Lógico_ex10: */
+
+CREATE TABLE Apartamento (
+    Id__apartamento integer,
+    Nome_proprietario varchar(100),
+    Telefone_proprietario varchar(100),
+    Numero_apartamento integer,
+    Qtd_quartos integer,
+    Tipo_ocupacao varchar(50),
+    PRIMARY KEY (Id__apartamento, Numero_apartamento, Qtd_quartos)
+);
+
+CREATE TABLE Condominio (
+    Id_condominio integer PRIMARY KEY,
+    mes_ano date,
+    data_pagamento date,
+    Valor_pago real,
+    Valor_pagar real,
+    fk_Apartamento_Id__apartamento integer,
+    fk_Apartamento_Numero_apartamento integer,
+    fk_Apartamento_Qtd_quartos integer
+);
+
+CREATE TABLE Tipo_Despesas (
+    Id_TipoDespesas integer PRIMARY KEY,
+    Nome varchar(100),
+    Valor_rateado boolean,
+    Mes_ano date,
+    Valor real,
+    fk_Condominio_Id_condominio integer
+);
+ 
+ALTER TABLE Condominio ADD CONSTRAINT FK_Condominio_2
+    FOREIGN KEY (fk_Apartamento_Id__apartamento, fk_Apartamento_Numero_apartamento, fk_Apartamento_Qtd_quartos)
+    REFERENCES Apartamento (Id__apartamento, Numero_apartamento, Qtd_quartos)
+    ON DELETE RESTRICT;
+ 
+ALTER TABLE Tipo_Despesas ADD CONSTRAINT FK_Tipo_Despesas_2
+    FOREIGN KEY (fk_Condominio_Id_condominio)
+    REFERENCES Condominio (Id_condominio)
+    ON DELETE RESTRICT;

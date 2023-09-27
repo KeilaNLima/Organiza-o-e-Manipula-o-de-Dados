@@ -1,0 +1,37 @@
+/* Lógico_ex6: */
+
+CREATE TABLE Cliemte (
+    Id_cliente integer PRIMARY KEY,
+    Nome varchar(100),
+    Telefone varchar(18),
+    email varchar(30)
+);
+
+CREATE TABLE Tipo_de_Anuncio (
+    Id_anuncio integer,
+    Nome varchar(100),
+    quant_palavras integer,
+    Anuncio_imagem varchar(100),
+    fk_Anuncio_Id__anuncio integer,
+    PRIMARY KEY (Id_anuncio, quant_palavras)
+);
+
+CREATE TABLE Anuncio (
+    Id__anuncio integer PRIMARY KEY,
+    valor_produto real,
+    Texto_titlo varchar(60),
+    Nome varchar(100),
+    Telefone varchar(18),
+    Data_anuncio date,
+    fk_Cliemte_Id_cliente integer
+);
+ 
+ALTER TABLE Tipo_de_Anuncio ADD CONSTRAINT FK_Tipo_de_Anuncio_2
+    FOREIGN KEY (fk_Anuncio_Id__anuncio)
+    REFERENCES Anuncio (Id__anuncio)
+    ON DELETE RESTRICT;
+ 
+ALTER TABLE Anuncio ADD CONSTRAINT FK_Anuncio_2
+    FOREIGN KEY (fk_Cliemte_Id_cliente)
+    REFERENCES Cliemte (Id_cliente)
+    ON DELETE RESTRICT;

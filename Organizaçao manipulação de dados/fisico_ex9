@@ -1,0 +1,36 @@
+/* Lógico_ex9: */
+
+CREATE TABLE Colecao (
+    Id__colecao integer,
+    Numero_colecao integer,
+    Ano_revista dete,
+    Cor_revista varchar(50),
+    Numero_etiqueta interge,
+    PRIMARY KEY (Id__colecao, Numero_colecao, Numero_etiqueta)
+);
+
+CREATE TABLE Amigo (
+    Id_amigo integer,
+    Nome_amigo varchar(!00),
+    Nome_mae varchar(100),
+    Telefone varchar(18),
+    Localizacao_amigo varchar(100)
+);
+
+CREATE TABLE Emprestimo (
+    Id_amigo integer,
+    Nome_revista varch(50),
+    Data_emprestimo date,
+    Data_devolucao date
+);
+
+CREATE TABLE pode (
+    fk_Colecao_Id__colecao integer,
+    fk_Colecao_Numero_colecao integer,
+    fk_Colecao_Numero_etiqueta interge
+);
+ 
+ALTER TABLE pode ADD CONSTRAINT FK_pode_1
+    FOREIGN KEY (fk_Colecao_Id__colecao, fk_Colecao_Numero_colecao, fk_Colecao_Numero_etiqueta)
+    REFERENCES Colecao (Id__colecao, Numero_colecao, Numero_etiqueta)
+    ON DELETE RESTRICT;

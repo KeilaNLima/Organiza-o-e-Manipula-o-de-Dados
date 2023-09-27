@@ -1,0 +1,37 @@
+/* Lógico_ex7: */
+
+CREATE TABLE Jogo_da_forca (
+    Id__jogo_da_forca integer PRIMARY KEY,
+    Nome varchar(100),
+    Palavras_frase varchar(100)
+);
+
+CREATE TABLE Controle_Rodada (
+    Id_controle_rodada integer,
+    Letras_erradas varchar(10),
+    Situacao_palavras varchar(30),
+    Letra_jogada varchar(30),
+    Nome_jogador varchar(50),
+    Total_pontos integer,
+    fk_Jogo_da_forca_Id__jogo_da_forca integer,
+    PRIMARY KEY (Id_controle_rodada, Total_pontos)
+);
+
+CREATE TABLE Controle_de_Erros (
+    Numero_erros integer,
+    Pedaco_boneco varchar(20),
+    Maxim0_erros integer,
+    Id_controle_erros integer,
+    fk_Jogo_da_forca_Id__jogo_da_forca integer,
+    PRIMARY KEY (Numero_erros, Maxim0_erros, Id_controle_erros)
+);
+ 
+ALTER TABLE Controle_Rodada ADD CONSTRAINT FK_Controle_Rodada_2
+    FOREIGN KEY (fk_Jogo_da_forca_Id__jogo_da_forca)
+    REFERENCES Jogo_da_forca (Id__jogo_da_forca)
+    ON DELETE RESTRICT;
+ 
+ALTER TABLE Controle_de_Erros ADD CONSTRAINT FK_Controle_de_Erros_2
+    FOREIGN KEY (fk_Jogo_da_forca_Id__jogo_da_forca)
+    REFERENCES Jogo_da_forca (Id__jogo_da_forca)
+    ON DELETE RESTRICT;

@@ -1,0 +1,50 @@
+/* Lógico_ex11: */
+
+CREATE TABLE Paciente (
+    Id_paciente integer PRIMARY KEY,
+    Nome_paciente varchar(100),
+    Endereco varchar(30),
+    Telefone varchar(18),
+    Data_nascimento date,
+    email varchar(50)
+);
+
+CREATE TABLE Consulta (
+    Id_consulta integer PRIMARY KEY,
+    Data_consulta date,
+    Hora_consulta time,
+    Data_retorno_consulta date,
+    Consulta_particular varchar(20),
+    Consulta_conveniada varchar(30),
+    Data_limite date,
+    Date_marcacao_futura date,
+    Limite_encaixe varchar(3)
+);
+
+CREATE TABLE Plano_de_Saude (
+    Id_Usuario integer PRIMARY KEY,
+    Nome_usuario varchar(100),
+    Limite_consulta varchar(5),
+    Data_consulta date,
+    fk_Paciente_Id_paciente integer
+);
+
+CREATE TABLE Agendar (
+    fk_Paciente_Id_paciente integer,
+    fk_Consulta_Id_consulta integer
+);
+ 
+ALTER TABLE Plano_de_Saude ADD CONSTRAINT FK_Plano_de_Saude_2
+    FOREIGN KEY (fk_Paciente_Id_paciente)
+    REFERENCES Paciente (Id_paciente)
+    ON DELETE RESTRICT;
+ 
+ALTER TABLE Agendar ADD CONSTRAINT FK_Agendar_1
+    FOREIGN KEY (fk_Paciente_Id_paciente)
+    REFERENCES Paciente (Id_paciente)
+    ON DELETE RESTRICT;
+ 
+ALTER TABLE Agendar ADD CONSTRAINT FK_Agendar_2
+    FOREIGN KEY (fk_Consulta_Id_consulta)
+    REFERENCES Consulta (Id_consulta)
+    ON DELETE RESTRICT;

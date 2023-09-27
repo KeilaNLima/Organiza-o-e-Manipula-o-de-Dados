@@ -1,0 +1,43 @@
+/* Lógico_ex4: */
+
+CREATE TABLE Tema (
+    nome varchar(100) PRIMARY KEY,
+    Valor_aluguel real,
+    Cor_toalha varchar(30)
+);
+
+CREATE TABLE Item_Tema (
+    Nome varchar(100),
+    Descricao Descriçao(100),
+    fk_Tema_nome varchar(100)
+);
+
+CREATE TABLE Endereco_da_festa_Aluguel (
+    Rua Varchar(150),
+    Numero varchar(10),
+    Complemento varchar(12),
+    Bairro varchar(30),
+    Cidade varchar(30),
+    CEP integer PRIMARY KEY,
+    UF varchar(2),
+    Data_festa date,
+    Horario_inicio time,
+    Horario_terminio time,
+    Valor_cobrado real,
+    fk_Tema_nome varchar(100)
+);
+
+CREATE TABLE Cliente (
+    nome varchar(100),
+    Telefone varchar(18)
+);
+ 
+ALTER TABLE Item_Tema ADD CONSTRAINT FK_Item_Tema_1
+    FOREIGN KEY (fk_Tema_nome)
+    REFERENCES Tema (nome)
+    ON DELETE RESTRICT;
+ 
+ALTER TABLE Endereco_da_festa_Aluguel ADD CONSTRAINT FK_Endereco_da_festa_Aluguel_2
+    FOREIGN KEY (fk_Tema_nome)
+    REFERENCES Tema (nome)
+    ON DELETE RESTRICT;

@@ -1,0 +1,14 @@
+/* Lógico_ex8: */
+
+CREATE TABLE Pacote (
+    Id_pacote integer,
+    Nome_pacote varchar(100),
+    Nome_diretorio_pacote varchar
+);
+
+CREATE TABLE Caso_de_uso (
+    Id_lista__caso__uso integer,
+    Nome varchar(100),
+    identificacao varchar(40),
+    Nome_template varchar
+);

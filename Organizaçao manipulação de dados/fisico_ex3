@@ -1,0 +1,17 @@
+/* Lógico_3: */
+
+CREATE TABLE Teste_Questao (
+    Data_geracao date,
+    Numero_questoes integer,
+    Numero integer,
+    Enunciado varchar(100),
+    Gabarito varchar(100),
+    Bimestre integer,
+    PRIMARY KEY (Numero, Bimestre)
+);
+
+CREATE TABLE Materia_Disciplina (
+    Nome varchar(100),
+    Descricao varchar(100),
+    Serie integer
+);
